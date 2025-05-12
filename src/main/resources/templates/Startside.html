@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Startside</title>
+    <link rel ="stylesheet" th:href="@{/Styler.css}">
+</head>
+
+<body>
+<div class = "container">
+    
+    <h1 class = "title">Vælg brugertype</h1>
+
+        <div class="role-boxes">
+            <!-- Forretningsudvikler boksen -->
+            <a href = "/login" class = "role-box">
+                <img src="/images/forretningsudvikler.png">
+                <p>Forretningsudvikler</p>
+            </a>
+
+
+            <!-- Skadebehandler boksen -->
+            <a href = "/login" class = "role-box">
+                <img src ="/images/skadebehandler_2.png">
+                <p>Skadebehandler</p>
+            </a>
+
+
+            <!-- Dataregistrator boksen -->
+            <a href="/dataForside" class = "role-box">
+                <img src="/images/dataregistrator.png">
+                <p>Dataregistrator</p>
+            </a>
+        </div>
+</div>
+</body>
+</html>
