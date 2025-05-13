@@ -1,6 +1,6 @@
-package org.example.bilabonnement.Repository;
+package org.example.eksamensprojektbilabonnement.Repository;
 
-import org.example.bilabonnement.Model.Bil;
+import org.example.eksamensprojektbilabonnement.Model.Bil;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

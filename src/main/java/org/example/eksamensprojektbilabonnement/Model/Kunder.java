@@ -1,6 +1,8 @@
-package org.example.bilabonnement.Model;
+package org.example.eksamensprojektbilabonnement.Model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.cglib.core.Local;
 
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 public class Kunder {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long kundeId;
 
     private String fornavn;

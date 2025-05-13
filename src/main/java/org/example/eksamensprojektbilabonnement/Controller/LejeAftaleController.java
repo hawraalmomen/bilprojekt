@@ -1,12 +1,12 @@
-package org.example.bilabonnement.Controller;
+package org.example.eksamensprojektbilabonnement.Controller;
 
-import org.example.bilabonnement.Model.Bil;
-import org.example.bilabonnement.Model.Kunder;
-import org.example.bilabonnement.Model.LejeAftale;
-import org.example.bilabonnement.Repository.BilRepo;
-import org.example.bilabonnement.Repository.KunderRepo;
-import org.example.bilabonnement.Repository.LejeAftaleRepo;
-import org.example.bilabonnement.Service.LejeAftaleService;
+import org.example.eksamensprojektbilabonnement.Model.Bil;
+import org.example.eksamensprojektbilabonnement.Model.Kunder;
+import org.example.eksamensprojektbilabonnement.Model.LejeAftale;
+import org.example.eksamensprojektbilabonnement.Repository.BilRepo;
+import org.example.eksamensprojektbilabonnement.Repository.KunderRepo;
+import org.example.eksamensprojektbilabonnement.Repository.LejeAftaleRepo;
+import org.example.eksamensprojektbilabonnement.Service.LejeAftaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -34,6 +34,8 @@ public class LejeAftaleController {
     @GetMapping("/lejeAftale")
     public String showLejeAftaleForm(Model model){
         model.addAttribute("lejeAftale", new LejeAftale());
+        model.addAttribute("kunder", kunderRepo.findAll());
+        model.addAttribute("biler", bilRepo.findAll());
         return "lejeAftale";
     }
 

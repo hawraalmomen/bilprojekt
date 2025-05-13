@@ -1,7 +1,7 @@
-package org.example.bilabonnement.Controller;
+package org.example.eksamensprojektbilabonnement.Controller;
 
-import org.example.bilabonnement.Model.Kunder;
-import org.example.bilabonnement.Repository.KunderRepo;
+import org.example.eksamensprojektbilabonnement.Model.Kunder;
+import org.example.eksamensprojektbilabonnement.Repository.KunderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,7 +1,7 @@
-package org.example.bilabonnement.Model;
+package org.example.eksamensprojektbilabonnement.Model;
 
 import jakarta.persistence.*;
-import org.example.bilabonnement.Repository.KunderRepo;
+import org.example.eksamensprojektbilabonnement.Repository.KunderRepo;
 
 import java.time.LocalDate;
 
@@ -12,6 +12,7 @@ public class LejeAftale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "lejeaftale_id")
     private Long lejeId;
 
     @ManyToOne

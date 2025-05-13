@@ -1,9 +1,9 @@
-package org.example.bilabonnement.Service;
+package org.example.eksamensprojektbilabonnement.Service;
 
-import org.example.bilabonnement.Model.Bil;
-import org.example.bilabonnement.Model.Kunder;
-import org.example.bilabonnement.Model.LejeAftale;
-import org.example.bilabonnement.Repository.LejeAftaleRepo;
+import org.example.eksamensprojektbilabonnement.Model.Bil;
+import org.example.eksamensprojektbilabonnement.Model.Kunder;
+import org.example.eksamensprojektbilabonnement.Model.LejeAftale;
+import org.example.eksamensprojektbilabonnement.Repository.LejeAftaleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

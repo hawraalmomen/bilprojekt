@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret LejeAftale</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -10,11 +11,21 @@
 
 <form th:action="@{lejeAftale}" th:object="${lejeAftale}" method="post">
 
-    <label>Kunde ID:</label>
-    <input type="number" name="kundeId"><br><br>
+    <label for="kundeId">Kunde:</label>
+    <select name="kundeId" id="kundeId">
+        <option th:each="k : ${kunder}"
+                th:value="${k.kundeId}"
+                th:text="${k.fornavn + ' ' + k.efternavn + ' - ' + k.email}">
+        </option>
+    </select><br><br>
 
-    <label>Bil ID:</label>
-    <input type="number" name="bilId"><br><br>
+    <label for="BilId">Bil:</label>
+    <select name="bilId" id="bilId">
+        <option th:each="b : ${biler}"
+                th:value="${b.bilId}"
+                th:text="${b.brand + ' ' + b.model + ' ' + b.nummerPlade + ' - ' + b.currentStatus}">
+        </option>
+    </select><br><br>
 
     <label>Startdato:</label>
     <input type="date" name="startDato"><br><br>
@@ -25,7 +36,7 @@
     <button type="submit">Opret Lejeaftale</button>
 </form>
 
-<a th:href="@{/}">gå tilbage til hjemme siden</a>
+<a th:href="@{/dataForside}">gå tilbage</a>
 
 </body>
 </html>
