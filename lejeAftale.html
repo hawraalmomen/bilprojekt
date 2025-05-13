@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret LejeAftale</title>
+</head>
+<body>
+
+<h1>Opret lejeaftale</h1>
+
+<form th:action="@{lejeAftale}" th:object="${lejeAftale}" method="post">
+
+    <label>Kunde ID:</label>
+    <input type="number" name="kundeId"><br><br>
+
+    <label>Bil ID:</label>
+    <input type="number" name="bilId"><br><br>
+
+    <label>Startdato:</label>
+    <input type="date" name="startDato"><br><br>
+
+    <label>Slutdato:</label>
+    <input type="date" name="slutDato"><br><br>
+
+    <button type="submit">Opret Lejeaftale</button>
+</form>
+
+<a th:href="@{/}">gå tilbage til hjemme siden</a>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kunde</title>
+</head>
+<body>
+
+<h1>Opret ny kunde</h1>
+
+<form th:action="@{/kunde}" th:object="${kunde}" method="post">
+    <label>Fornavn:</label>
+    <input type="text" th:field="*{fornavn}" /><br><br>
+
+    <label>Efternavn:</label>
+    <input type="text" th:field="*{efternavn}" /><br><br>
+
+    <label>Foedelsedag</label>
+    <input type="text" th:field="*{fDag}" /><br><br>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" /><br><br>
+
+    <label>Telefonnummer:</label>
+    <input type="text" th:field="*{tlfNr}" /><br><br>
+
+    <label>Adresse:</label>
+    <input type="text" th:field="*{addresse}" /><br><br>
+
+    <label>Postnummer:</label>
+    <input type="text" th:field="*{postNr}" /><br><br>
+
+    <button type="submit">Gem kunde</button>
+</form>
+
+<a th:href="@{/}">tilbage til forsiden</a>
+
+</body>
+</html>
