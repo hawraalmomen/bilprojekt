@@ -23,7 +23,7 @@
     <select name="bilId" id="bilId">
         <option th:each="b : ${biler}"
                 th:value="${b.bilId}"
-                th:text="${b.brand + ' ' + b.model + ' ' + b.nummerPlade + ' - ' + b.currentStatus}">
+                th:text="${b.brand + ' ' + b.model + ' ' + b.nummerPlade + ' - ' + b.bilStatus}">
         </option>
     </select><br><br>
 
