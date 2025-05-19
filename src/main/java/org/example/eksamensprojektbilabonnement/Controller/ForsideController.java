@@ -19,12 +19,13 @@ public class ForsideController
         return "dataForside";
     }
 
-
+    /*
     @GetMapping("/foretUdviklForside")
     public String foretUdviklForside()
     {
         return "foretUdviklForside";
     }
 
+     */
 
 }

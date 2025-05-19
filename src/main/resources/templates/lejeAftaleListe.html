@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lejeAftaleListe</title>
+    
+</head>
+<body>
+<h1>Liste over kunder</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Navn</th>
+        <th>Email</th>
+        <th>Bil</th>
+        <th>StartDato</th>
+        <th>SlutDato</th>
+        <th>Handling</th>
+    </tr>
+    <tr th:each="l : ${lejeAftaler}">
+        <td th:text="${l.lejeId}"></td>
+        <td th:text="${l.kunde.fornavn + '' + l.kunde.efternavn}"></td>
+        <td th:text="${l.kunde.email}"></td>
+        <td th:text="${l.bil.brand + ' ' + l.bil.model + ' ' + l.bil.nummerPlade + ' - ' + l.bil.currentStatus}"></td>
+        <td th:text="${#temporals.format(l.startDato, 'dd-MM-yyyy')}"></td>
+        <td th:text="${#temporals.format(l.slutDato, 'dd-MM-yyyy')}"></td>
+        <td>
+            <a th:href="@{/lejeAftale/edit/{id}(id=${l.lejeId})}">Rediger</a> |
+            <a th:href="@{/lejeAftale/delete/{id}(id=${l.lejeId})}"onclick="return confirm('Er du sikker?')">Slet</a>
+        </td>
+    </tr>
+</table>
+
+<a href="/lejeAftale" class="function-box">Opret ny lejeAftale</a>
+
+<a href="/" class="function-box">Tilbage til forsiden</a>
+
+</body>
+</html>

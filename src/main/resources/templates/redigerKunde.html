@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RedigerKunder</title>
+</head>
+<body>
+<form th:action="@{/kunder/update}" th:object="${kunde}" method="post">
+  <input type="hidden" th:field="*{kundeId}">
+  <label>Fornavn:</label>
+  <input type="text" th:field="*{fornavn}" /><br><br>
+
+  <label>Efternavn:</label>
+  <input type="text" th:field="*{efternavn}" /><br><br>
+
+  <label>Fødselsdag:</label>
+  <input type="date" th:field="*{fDag}" /><br><br>
+
+  <label>Email:</label>
+  <input type="email" th:field="*{email}" /><br><br>
+
+  <label>Telefonnummer:</label>
+  <input type="text" th:field="*{tlfNr}" /><br><br>
+
+  <label>Adresse:</label>
+  <input type="text" th:field="*{addresse}" /><br><br>
+
+  <label>Postnummer:</label>
+  <input type="text" th:field="*{postNr}" /><br><br>
+
+  <button type="submit">Gem kunde</button>
+</form>
+
+</body>
+</html>

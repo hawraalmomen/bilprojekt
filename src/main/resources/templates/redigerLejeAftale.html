@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>redigerLejeAftale</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<h1>rediger lejeaftale</h1>
+
+<form th:action="@{lejeAftale/update}" th:object="${lejeAftale}" method="post">
+  <input type="hidden" th:field="*{lejeId}" />
+
+  <label for="kundeId">Kunde:</label>
+  <select name="*{kunde.kundeId}" id="kundeId">
+    <option th:each="k : ${kunder}"
+            th:value="${k.kundeId}"
+            th:text="${k.fornavn + ' ' + k.efternavn + ' - ' + k.email}">
+    </option>
+  </select><br><br>
+
+  <label for="bilId">Bil:</label>
+  <select name="*{bil.bilId}" id="bilId">
+    <option th:each="b : ${biler}"
+            th:value="${b.bilId}"
+            th:text="${b.brand + ' ' + b.model + ' ' + b.nummerPlade + ' - ' + b.currentStatus}">
+    </option>
+  </select><br><br>
+
+  <label>Startdato:</label>
+  <input type="date" name="*{startDato}" /><br><br>
+
+  <label>Slutdato:</label>
+  <input type="date" name="*{slutDato}" /><br><br>
+
+  <button type="submit">Opdater Lejeaftale</button>
+</form>
+
+<a th:href="@{/lejeAftaleListe}">gå tilbage</a>
+
+</body>
+</html>

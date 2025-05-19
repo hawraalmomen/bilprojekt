@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Forside</title>
+  <title>Forretningsudvikler Oversigt</title>
   <link rel ="stylesheet" th:href="@{/Styler.css}">
 </head>
 
 
-<body>
-<div class = "container">
-  <h1> </h1>
+    <body>
+    <div class = "container">
+      <h1>Forretningsudvikler Dashboard</h1>
 
+      <p>Antal biler i systemet: <strong th:text="${antalBiler}">0</strong></p>
+      <p>Samlet pris af alle biler: <strong th:text="${samletPris}">0</strong></p>
+      <p>Antal af biler som er lejet ud: <strong th:text="${samletBilerLejetUd}">0</strong></p>
 
-
+      <a th:href="@{/}">Tilbage til forsiden</a>
 
 </div>
 </body>

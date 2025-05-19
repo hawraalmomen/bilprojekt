@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kundeOversigt</title>
+</head>
+<body>
+<h1>Liste over kunder</h1>
+<table>
+    <tr>
+        <th>ID</th><th>Navn</th><th>Email</th><th>Handling</th>
+    </tr>
+    <tr th:each="k : ${kunder}">
+        <td th:text="${k.kundeId}"></td>
+        <td th:text="${k.fornavn + '' + k.efternavn}"></td>
+        <td th:text="${k.email}"></td>
+        <td>
+            <a th:href="@{/kunder/edit/{id}(id=${k.kundeId})}">Rediger</a> |
+            <a th:href="@{/kunde/delete/{id}(id=${k.kundeId})}"onclick="return confirm('Er du sikker?')">Slet</a>
+        </td>
+    </tr>
+</table>
+
+<a href="/kunde" class="function-box">Opret ny bruger</a>
+
+<a href="/" class="function-box">Tilbage til forsiden</a>
+
+</body>
+</html>

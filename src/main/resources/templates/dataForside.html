@@ -6,24 +6,35 @@
   <link rel ="stylesheet" th:href="@{/Styler.css}">
 </head>
 
-
-
 <body>
-  <div class = "container">
 
+  <!-- Log ud -->
+  <ul class="logout">
+    <li><a href="/">Log ud</a></li>
+  </ul>
+
+
+  <div class = "container">
     <!-- Overskrift / titel -->
     <h1 class = "title">Velkommen</h1>
 
 
     <div class="function-boxes">
       <!-- Oprettelse af ny lejeaftale boksen -->
-      <a href = "/" class = "function-box">
+      <a href = "/lejeAftaleListe" class = "function-box">
         <img src="/images/cars1.png">
         <p>Opret ny lejeaftale</p>
       </a>
-
-
     </div>
+
+    <div class="function-boxes">
+      <!-- Oprettelse af ny lejeaftale boksen -->
+      <a href = "/kundeListe" class = "function-box">
+        <img src="/images/people.png">
+        <p>Opret ny kunder</p>
+      </a>
+    </div>
+
   </div>
 </body>
 </html>
