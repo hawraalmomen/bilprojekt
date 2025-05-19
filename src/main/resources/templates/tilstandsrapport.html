@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tilstandsrapport</title>
+    <link rel="stylesheet" th:href="@{/Styler.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="title">Opret tilstandsrapport</h1>
+
+<form action="/" method="post">
+    <label for= "bil" style="text-align: left;">Bilnavn:</label>
+    <input type="text" id="bil" name="bilnavn" required><br><br>
+
+    <label for="bilModel" style="text-align: left;">bilModel:</label>
+    <input type="text" id="bilModel" name="bilModel" required><br><br>
+
+    <label for="datoTilsyn" style="text-align: left;">Dato for tilsyn:</label>
+    <input type="text" id="datoTilsyn" name="datoTilsyn" required><br><br>
+
+    <label for="fejlBeskrivelse" style="text-align: left">Beskrivelse af fejl og mangler</label>
+    <input type="text" id="fejlBeskrivelse" name="fejlBeskrivelse" required><br><br>
+
+    <label for="prisSaet" style="text-align: left;">Pris for fejl og mangler:</label>
+    <input type="text" id="prisSaet" name="prisSaet" required><br><br>
+
+    <label for="totalPris" style="text-align: left;">Totalpris:</label>
+    <input type="text" id="totalPris" name="totalPris" required><br><br>
+
+
+    <button type="submit">Gem rapport</button>
+    <button type="submit">Rediger rapport</button>
+</form>
+    <p><a href="/skadeForside">Tilbage</a></p>
+</div>
+</body>
+</html>
