@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -24,6 +25,31 @@ public class KundeController {
     @PostMapping("/kunde")
     public String opretKunde(@ModelAttribute Kunder kunde) {
         kunderRepo.save(kunde);
-        return "redirect:/kunde";
+        return "redirect:/kundeListe";
+    }
+
+    @GetMapping("/kundeListe")
+    public String showKunderForm(Model model) {
+        model.addAttribute("kunder", kunderRepo.findAll());
+        return "kundeListe";
+    }
+
+    @GetMapping("/kunder/edit/{id}")
+    public String showEditForm(@PathVariable long id, Model model) {
+        Kunder kunde = kunderRepo.findById(id).orElseThrow();
+        model.addAttribute("kunde", kunde);
+        return "redigerKunde";
+    }
+
+    @PostMapping("/kunder/update")
+    public String updateKunde(@ModelAttribute Kunder kunde) {
+        kunderRepo.save(kunde);
+        return "redirect:/kundeListe";
+    }
+
+    @GetMapping("/kunde/delete/{id}")
+    public String deleteKunde(@PathVariable long id) {
+        kunderRepo.deleteById(id);
+        return "redirect:/kundeListe";
     }
 }

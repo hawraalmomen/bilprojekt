@@ -23,4 +23,8 @@ public class LejeAftaleService {
 
         return lejeAftaleRepo.save(leje);
     }
+
+    public long getAntalLejetBiler(){
+        return lejeAftaleRepo.count();
+    }
 }

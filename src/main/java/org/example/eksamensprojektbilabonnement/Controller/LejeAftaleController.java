@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -51,6 +49,33 @@ public class LejeAftaleController {
         leje.setSlutDato(slutDato);
 
         lejeAftaleRepo.save(leje);
-        return "redirect:/";
+        return "redirect:/lejeAftaleListe";
+    }
+
+    @GetMapping("/lejeAftaleListe")
+    public String showLejeAftaler(Model model) {
+        model.addAttribute("lejeAftaler", lejeAftaleRepo.findAll());
+        return "lejeAftaleListe";
+    }
+
+    @GetMapping("/lejeAftale/edit/{id}")
+    public String showEditForm(@PathVariable long id, Model model) {
+        LejeAftale lejeAftale = lejeAftaleRepo.findById(id).orElseThrow();
+        model.addAttribute("lejeAftale", lejeAftale);
+        model.addAttribute("kunder", kunderRepo.findAll());
+        model.addAttribute("biler", bilRepo.findAll());
+        return "redigerLejeAftale";
+    }
+
+    @PostMapping("/lejeAftale/update")
+    public String updateLejeAftale(@ModelAttribute LejeAftale lejeAftale) {
+        lejeAftaleRepo.save(lejeAftale);
+        return "redirect:/lejeAftaleListe";
+    }
+
+    @GetMapping("/lejeAftale/delete/{id}")
+    public String deleteLejeAftale(@PathVariable long id) {
+        lejeAftaleRepo.deleteById(id);
+        return "redirect:/lejeAftaleListe";
     }
 }
