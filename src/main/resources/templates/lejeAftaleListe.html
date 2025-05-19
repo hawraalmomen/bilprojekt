@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>lejeAftaleListe</title>
-    
+
 </head>
 <body>
 <h1>Liste over kunder</h1>
@@ -19,9 +19,9 @@
     </tr>
     <tr th:each="l : ${lejeAftaler}">
         <td th:text="${l.lejeId}"></td>
-        <td th:text="${l.kunde.fornavn + '' + l.kunde.efternavn}"></td>
+        <td th:text="${l.kunde.fornavn + ' ' + l.kunde.efternavn}"></td>
         <td th:text="${l.kunde.email}"></td>
-        <td th:text="${l.bil.brand + ' ' + l.bil.model + ' ' + l.bil.nummerPlade + ' - ' + l.bil.currentStatus}"></td>
+        <td th:text="${l.bil.brand + ' ' + l.bil.model + ' ' + l.bil.nummerPlade + ' - ' + l.bil.bilStatus}"></td>
         <td th:text="${#temporals.format(l.startDato, 'dd-MM-yyyy')}"></td>
         <td th:text="${#temporals.format(l.slutDato, 'dd-MM-yyyy')}"></td>
         <td>
