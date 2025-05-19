@@ -23,6 +23,14 @@ public class ForretningUdviklerController {
     @Autowired
     private LejeAftaleRepo lejeAftaleRepo;
 
+
+    @GetMapping("/foretUdviklForside")
+    public String foretUdviklForside()
+    {
+        return "foretUdviklForside";
+    }
+
+    
     /*
     @GetMapping("/foretUdviklForside")
     public String foretUdviklForside(Model model) {
