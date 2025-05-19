@@ -18,10 +18,9 @@ public class Kunder {
     private int postNr;
     private String email;
     private String tlfNr;
-    @Column(name = "adresse")
-    private String addresse;
+    private String adresse;
 
-    public Kunder(Long kundeId, String fornavn, String efternavn, LocalDate fDag, int postNr, String email, String tlfNr, String addresse) {
+    public Kunder(Long kundeId, String fornavn, String efternavn, LocalDate fDag, int postNr, String email, String tlfNr, String adresse) {
         this.kundeId = kundeId;
         this.fornavn = fornavn;
         this.efternavn = efternavn;
@@ -29,7 +28,7 @@ public class Kunder {
         this.postNr = postNr;
         this.email = email;
         this.tlfNr = tlfNr;
-        this.addresse = addresse;
+        this.adresse = adresse;
     }
 
     public Kunder() {
@@ -48,8 +47,8 @@ public class Kunder {
         return fDag;
     }
 
-    public String getAddresse() {
-        return addresse;
+    public String getAdresse() {
+        return adresse;
     }
 
     public String getFornavn() {
@@ -72,8 +71,8 @@ public class Kunder {
         return tlfNr;
     }
 
-    public void setAddresse(String addresse) {
-        this.addresse = addresse;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public void setEmail(String email) {
