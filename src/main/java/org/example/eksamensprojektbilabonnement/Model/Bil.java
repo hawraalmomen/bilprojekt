@@ -1,33 +1,43 @@
 package org.example.eksamensprojektbilabonnement.Model;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class Bil {
+
+    public enum BilStatus{
+        Klar, Udlejet, Skadet
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bil_id")
     private int bilId;
 
+    @Enumerated(EnumType.STRING)
+    private BilStatus bilStatus;
+
+
+
     private String brand;
     private String model;
     private String nummerPlade;
     private String stelNummer;
-    private double pris;
-    private String currentStatus;
+    private BigDecimal pris;
+
     private int produktionAar;
     private String braendstoftype;
 
     public Bil() {}
 
-    public Bil(String brand, String model, String nummerPlade, String stelNummer, double pris, String currentStatus, int produktionAar, String braendstoftype) {
+    public Bil(String brand, String model, String nummerPlade, String stelNummer, BigDecimal pris, BilStatus bilStatus, int produktionAar, String braendstoftype) {
         this.brand = brand;
         this.model = model;
         this.nummerPlade = nummerPlade;
         this.stelNummer = stelNummer;
         this.pris = pris;
-        this.currentStatus = currentStatus;
+        this.bilStatus = bilStatus;
         this.produktionAar = produktionAar;
         this.braendstoftype = braendstoftype;
     }
@@ -72,19 +82,19 @@ public class Bil {
         this.stelNummer = stelNummer;
     }
 
-    public double getPris() {
+    public BigDecimal getPris() {
         return pris;
     }
 
-    public void setPris(double pris) {
+    public void setPris(BigDecimal pris) {
         this.pris = pris;
     }
-    public String getCurrentStatus() {
-        return currentStatus;
+    public BilStatus getBilStatus() {
+        return bilStatus;
     }
 
-    public void setCurrentStatus(String currentStatus) {
-        this.currentStatus = currentStatus;
+    public void setBilStatus(BilStatus bilStatus) {
+        this.bilStatus = bilStatus;
     }
 
     public int getProduktionAar() {

@@ -1,9 +1,6 @@
 package org.example.eksamensprojektbilabonnement.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
@@ -18,12 +15,13 @@ public class Kunder {
     private String fornavn;
     private String efternavn;
     private LocalDate fDag;
-    private String postNr;
+    private int postNr;
     private String email;
     private String tlfNr;
+    @Column(name = "adresse")
     private String addresse;
 
-    public Kunder(Long kundeId, String fornavn, String efternavn, LocalDate fDag, String postNr, String email, String tlfNr, String addresse) {
+    public Kunder(Long kundeId, String fornavn, String efternavn, LocalDate fDag, int postNr, String email, String tlfNr, String addresse) {
         this.kundeId = kundeId;
         this.fornavn = fornavn;
         this.efternavn = efternavn;
@@ -66,7 +64,7 @@ public class Kunder {
         return email;
     }
 
-    public String getPostNr() {
+    public int getPostNr() {
         return postNr;
     }
 
@@ -94,7 +92,7 @@ public class Kunder {
         this.efternavn = efternavn;
     }
 
-    public void setPostNr(String postNr) {
+    public void setPostNr(int postNr) {
         this.postNr = postNr;
     }
 

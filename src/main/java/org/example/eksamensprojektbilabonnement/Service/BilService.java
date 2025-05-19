@@ -15,9 +15,12 @@ public class BilService {
         return bilRepo.count();
     }
 
+    /*
     public double getSamletPris() {
         return bilRepo.findAll().stream()
                 .mapToDouble(Bil::getPris)
                 .sum();
     }
+
+     */
 }
