@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nulstilling</title>
+    <link rel="stylesheet" th:href="@{/Styler.css}">
+</head>
+<body>
+<div class="container">
+    <h1 class="title">Nulstil</h1>
+
+    <form action="nulstil" method="post">
+    <label for="reset">Indtast venligst din e-mail</label>
+    <input type="text" id="reset" name="reset" required><br><br>
+
+    <button type="submit">Indsend</button>
+    </form>
+
+    <p><a href="/login">Tilbage</a><p>
+
+</div>
+
+</body>
+</html>

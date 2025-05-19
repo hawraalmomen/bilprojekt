@@ -19,5 +19,10 @@ public class LoginController {
        } else {
            return "login";
        }
+    }
+
+    @GetMapping("/nulstilkode")
+    public String reset() {
+        return "nulstilkode";
    }
 }

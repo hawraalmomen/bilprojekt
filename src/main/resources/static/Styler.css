@@ -67,6 +67,27 @@ body {
 
 
 
+.logout {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    font-size: 25px;
+    font-weight: bold;
+    top: 5px;
+    right: 5px;
+}
+
+.logout li a {
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.logout li a:hover {
+    background-color: #8f8f8f;
+    color: white;
+}
 
 
 
