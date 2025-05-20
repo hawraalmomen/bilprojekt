@@ -11,9 +11,15 @@
     
     <h1 class = "title">Vælg brugertype</h1>
 
+    <p th:if="${session.loggedIn}">Velkommen, <span th:text="${session.username}"></span>!</p>
+
+    <ul class="logout" th:if="${session.loggedIn}">
+        <li><a th:href="@{/logout}">Log ud</a></li>
+    </ul>
+
         <div class="role-boxes">
             <!-- Forretningsudvikler boksen -->
-            <a href = "/login" class = "role-box">
+            <a href = "/foretUdviklForside" class = "role-box">
                 <img src="/images/forretningsudvikler.png">
                 <p>Forretningsudvikler</p>
             </a>
@@ -27,11 +33,13 @@
 
 
             <!-- Dataregistrator boksen -->
-            <a href="/login" class = "role-box">
+            <a href="/dataForside" class = "role-box">
                 <img src="/images/dataregistrator.png">
                 <p>Dataregistrator</p>
             </a>
         </div>
+
+
 </div>
 </body>
 </html>

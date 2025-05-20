@@ -7,7 +7,11 @@
 </head>
 <body>
 
-<h1>rediger lejeaftale</h1>
+<ul class="logout" th:if="${session.loggedIn}">
+  <li><a th:href="@{/logout}">Log ud</a></li>
+</ul>
+
+<h1>Rediger Lejeaftale</h1>
 
 <form th:action="@{lejeAftale/update}" th:object="${lejeAftale}" method="post">
   <input type="hidden" th:field="*{lejeId}" />

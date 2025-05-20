@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Forretningsudvikler Oversigt</title>
-  <link rel ="stylesheet" th:href="@{/Styler.css}">
+    <meta charset="UTF-8">
+    <title>Forretningsudvikler Oversigt</title>
+    <link rel ="stylesheet" th:href="@{/Styler.css}">
 </head>
+<body>
 
+<ul class="logout" th:if="${session.loggedIn}">
+    <li><a th:href="@{/logout}">Log ud</a></li>
+</ul>
 
-    <body>
-    <div class = "container">
-      <h1>Forretningsudvikler Dashboard</h1>
+<div class = "container">
+    <h1>Forretningsudvikler Dashboard</h1>
 
-      <p>Antal biler i systemet: <strong th:text="${antalBiler}">0</strong></p>
-      <p>Samlet pris af alle biler: <strong th:text="${samletPris}">0</strong></p>
-      <p>Antal af biler som er lejet ud: <strong th:text="${samletBilerLejetUd}">0</strong></p>
+    <p>Antal biler i systemet: <strong th:text="${antalBiler}">0</strong></p>
+    <p>Samlet pris af alle biler: <strong th:text="${samletPris}">0</strong></p>
+    <p>Antal af biler som er lejet ud: <strong th:text="${samletBilerLejetUd}">0</strong></p>
 
-      <a th:href="@{/}">Tilbage til forsiden</a>
+    <a th:href="@{/}">Tilbage til forsiden</a>
 
 </div>
 </body>

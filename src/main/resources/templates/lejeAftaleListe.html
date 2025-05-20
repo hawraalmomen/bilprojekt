@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>lejeAftaleListe</title>
-
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
+
+<ul class="logout" th:if="${session.loggedIn}">
+    <li><a th:href="@{/logout}">Log ud</a></li>
+</ul>
+
 <h1>Liste over kunder</h1>
 <table>
     <tr>

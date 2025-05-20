@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>RedigerKunder</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
+
+<ul class="logout" th:if="${session.loggedIn}">
+  <li><a th:href="@{/logout}">Log ud</a></li>
+</ul>
+
+<h1>Rediger Kunde</h1>
+
 <form th:action="@{/kunder/update}" th:object="${kunde}" method="post">
   <input type="hidden" th:field="*{kundeId}">
   <label>Fornavn:</label>

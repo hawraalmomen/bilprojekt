@@ -9,8 +9,8 @@
 <body>
 
   <!-- Log ud -->
-  <ul class="logout">
-    <li><a href="/">Log ud</a></li>
+  <ul class="logout" th:if="${session.loggedIn}">
+    <li><a th:href="@{/logout}">Log ud</a></li>
   </ul>
 
 

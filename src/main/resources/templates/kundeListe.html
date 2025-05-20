@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>kundeOversigt</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
+
+<ul class="logout" th:if="${session.loggedIn}">
+    <li><a th:href="@{/logout}">Log ud</a></li>
+</ul>
+
 <h1>Liste over kunder</h1>
 <table>
     <tr>
@@ -12,7 +18,7 @@
     </tr>
     <tr th:each="k : ${kunder}">
         <td th:text="${k.kundeId}"></td>
-        <td th:text="${k.fornavn + '' + k.efternavn}"></td>
+        <td th:text="${k.fornavn + ' ' + k.efternavn}"></td>
         <td th:text="${k.email}"></td>
         <td>
             <a th:href="@{/kunder/edit/{id}(id=${k.kundeId})}">Rediger</a> |

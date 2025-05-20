@@ -11,6 +11,10 @@
 
 <div class = "container">
 
+  <ul class="logout" th:if="${session.loggedIn}">
+    <li><a th:href="@{/logout}">Log ud</a></li>
+  </ul>
+
   <!-- Overskrift / titel -->
   <h1 class = "title">Velkommen</h1>
 
