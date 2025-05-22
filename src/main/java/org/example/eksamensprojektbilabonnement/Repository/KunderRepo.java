@@ -35,7 +35,7 @@ public class KunderRepo
     // opret kunde
     public void opretKunde(Kunder kunde)
     {
-        String sql = "insert into kunder(fornavn, efternavn, f_dag, post_nr, adresse, email, tilf_nr) values (?,?,?,?,?,?,?)";
+        String sql = "insert into kunder(fornavn, efternavn, f_dag, post_nr, adresse, email, tlf_nr) values (?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql,
                 kunde.getFornavn(),
                 kunde.getEfternavn(),

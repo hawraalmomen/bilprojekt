@@ -74,23 +74,3 @@ public class BilRepo
     }
 
 }
-
-
-
-
-
-
-/*
-    private final JdbcTemplate jdbcTemplate;
-
-    public BilRepo(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public List<Bil> findBiler() {
-        String sql = "SELECT * FROM bil";
-        LinkedList<Bil> biler = new LinkedList<>();
-        biler.addAll(jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Bil.class)));
-        return biler;
-    }
-}*/

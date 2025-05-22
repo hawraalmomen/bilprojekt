@@ -1,39 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>kunde</title>
+    <link rel ="stylesheet" th:href="@{/Styler.css}">
 </head>
+
 <body>
 
-<h1>Opret ny kunde</h1>
+    <h1>Opret ny kunde</h1>
 
-<form th:action="@{/kunde}" th:object="${kunde}" method="post">
-    <label>Fornavn:</label>
-    <input type="text" th:field="*{fornavn}" /><br><br>
+    <form th:action="@{/kunde}" th:object="${kunde}" method="post">
+        <inpu type="hidden" th:field="*{kundeId}"/>
 
-    <label>Efternavn:</label>
-    <input type="text" th:field="*{efternavn}" /><br><br>
+        <label>Fornavn:</label>
+        <input type="text" th:field="*{fornavn}" /><br><br>
 
-    <label>Foedelsedag</label>
-    <input type="date" th:field="*{fDag}" /><br><br>
+        <label>Efternavn:</label>
+        <input type="text" th:field="*{efternavn}" /><br><br>
 
-    <label>Email:</label>
-    <input type="email" th:field="*{email}" /><br><br>
+        <label>Fødelsedag</label>
+        <input type="date" th:field="*{fDag}" /><br><br>
 
-    <label>Telefonnummer:</label>
-    <input type="text" th:field="*{tlfNr}" /><br><br>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" /><br><br>
 
-    <label>Adresse:</label>
-    <input type="text" th:field="*{adresse}" /><br><br>
+        <label>Telefonnummer:</label>
+        <input type="text" th:field="*{tlfNr}" /><br><br>
 
-    <label>Postnummer:</label>
-    <input type="text" th:field="*{postNr}" /><br><br>
+        <label>Adresse:</label>
+        <input type="text" th:field="*{adresse}" /><br><br>
 
-    <button type="submit">Gem kunde</button>
-</form>
+        <label>Postnummer:</label>
+        <input type="text" th:field="*{postNr}" /><br><br>
 
-<a th:href="@{/dataForside}">tilbage til forsiden</a>
+        <button type="submit">Gem kunde</button>
+    </form>
+
+    <a th:href="@{/dataForside}">Tilbage til forsiden</a>
 
 </body>
 </html>
