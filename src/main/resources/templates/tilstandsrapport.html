@@ -7,8 +7,14 @@
 </head>
 <body>
 
+<ul class="logout" th:if="${session.loggedIn}">
+    <li><a th:href="@{/logout}">Log ud</a></li>
+</ul>
+
 <div class="container">
     <h1 class="title">Opret tilstandsrapport</h1>
+
+
 
 <form action="/" method="post">
     <label for= "bil" style="text-align: left;">Bilnavn:</label>
@@ -22,6 +28,15 @@
 
     <label for="fejlBeskrivelse" style="text-align: left">Beskrivelse af fejl og mangler</label>
     <input type="text" id="fejlBeskrivelse" name="fejlBeskrivelse" required><br><br>
+
+    <label for="kundeId" style="text-align: left">Kunde:</label>
+    <select name="kundeId" id="kundeId">
+        <option disabled selected>-- vælg kunde --</option>
+        <option th:each="k : ${kunder}"
+                th:value="${k.kundeId}"
+                th:text="${k.fornavn + ' ' + k.efternavn + ' - ' + k.email}">
+        </option>
+    </select><br><br>
 
     <label for="prisSaet" style="text-align: left;">Pris for fejl og mangler:</label>
     <input type="text" id="prisSaet" name="prisSaet" required><br><br>
