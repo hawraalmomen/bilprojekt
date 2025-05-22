@@ -1,16 +1,11 @@
 package org.example.eksamensprojektbilabonnement.Service;
 
-import org.example.eksamensprojektbilabonnement.Model.Bil;
-import org.example.eksamensprojektbilabonnement.Model.Kunder;
 import org.example.eksamensprojektbilabonnement.Model.LejeAftale;
 import org.example.eksamensprojektbilabonnement.Repository.LejeAftaleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class LejeAftaleService
@@ -18,31 +13,19 @@ public class LejeAftaleService
     @Autowired
     private LejeAftaleRepo lejeAftaleRepo;
 
-    // opret lejeaftaler
-    public void opretLejeaftale(Long kundeId, Long bilId, LocalDate startDato, LocalDate slutDato)
+    // opret lejeaftale
+    public void opretLejeaftale(LejeAftale lejeaftale)
     {
-        LejeAftale aftale = new LejeAftale(null, kundeId, bilId, startDato, slutDato);
-        lejeAftaleRepo.opretLejeaftale(aftale);
+        lejeAftaleRepo.opretLejeaftale(lejeaftale);
     }
 
-    public Map<Long, LejeAftale> hentLejeaftaler()
-    {
-        List<LejeAftale> lejeaftaler = LejeAftaleRepo.hentAlleLejeaftaler();
 
-        Map<Long, LejeAftale> map = new HashMap<>();
-        for(LejeAftale l : lejeaftaler)
-        {
-            map.put(l.getLejeaftaleId(), l);
-        }
-
-        return map;
-    }
-
-    // controlleren kan foretage listevisning
+    // hent alle lejeaftaler
     public List<LejeAftale> hentAlleLejeaftaler()
     {
         return lejeAftaleRepo.hentAlleLejeaftaler();
     }
+
 
     // slet lejeaftale
     public void sletLejeaftale(Long id)
@@ -50,13 +33,15 @@ public class LejeAftaleService
         lejeAftaleRepo.sletLejeaftale(id);
     }
 
-    // hent lejeaftale til redigering
+
+    // hent lejeaftale med ID
     public LejeAftale hentLejeaftaleMedId(Long id)
     {
         return lejeAftaleRepo.hentLejeaftaleMedId(id);
     }
 
-    // opdatere en aftale
+
+    // opdater lejeaftale
     public void opdaterLejeaftale(LejeAftale lejeAftale)
     {
         lejeAftaleRepo.opdaterLejeaftale(lejeAftale);
@@ -97,4 +82,23 @@ public List<LejeAftale> hentAlleLejeaftaler()
         return lejeAftaleRepo.count();
     }
 }
+
+
+
+
+
+    // hent lejeaftaler
+    public Map<Long, LejeAftale> hentLejeaftaler()
+    {
+        List<LejeAftale> lejeaftaler = LejeAftaleRepo.hentAlleLejeaftaler();
+
+        Map<Long, LejeAftale> map = new HashMap<>();
+        for(LejeAftale l : lejeaftaler)
+        {
+            map.put(l.getLejeaftaleId(), l);
+        }
+
+        return map;
+    }
+
 */
