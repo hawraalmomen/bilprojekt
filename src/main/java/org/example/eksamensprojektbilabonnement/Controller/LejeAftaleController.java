@@ -16,7 +16,82 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @Controller
-public class LejeAftaleController {
+public class LejeAftaleController
+{
+    @Autowired
+    private LejeAftaleService service;
+
+    @GetMapping("/lejeaftale")
+    public String opretAftale(Model model)
+    {
+        model.addAttribute("lejeaftale", new LejeAftale());
+        return "lejeaftale";
+    }
+
+
+    @PostMapping("/lejeaftale")
+    public String gemEllerOpdaterLejeaftale(@ModelAttribute LejeAftale lejeAftale)
+    {
+        if(lejeAftale.getLejeaftaleId() != null)
+        {
+            service.opdaterLejeaftale(lejeAftale);
+        } else {
+            service.opretLejeaftale(lejeAftale.getKundeId(), lejeAftale.getBilId(), lejeAftale.getStartDato(), lejeAftale.getSlutDato());
+        }
+        return "redirect:/lejeAftaleListe";
+    }
+
+
+    @GetMapping("/lejeaftaler")
+    public String visAlle(Model model)
+    {
+        model.addAttribute("lejeaftaler", service.hentAlleLejeaftaler());
+        return "lejeAftaleListe";
+    }
+
+
+    @GetMapping("/lejeaftale/slet/{id}")
+    public String sletLejeaftale(@PathVariable Long id)
+    {
+        service.sletLejeaftale(id);
+        return "redirect:/lejeaftaler";
+    }
+
+
+    @GetMapping("/lejeaftale/rediger/{id}")
+    public String redigerForm(@PathVariable Long id, Model model)
+    {
+        LejeAftale aftale = service.hentLejeaftaleMedId(id);
+        model.addAttribute("lejeaftale", aftale);
+        return "lejeAftale";
+    }
+
+
+
+
+}
+
+
+/*
+@PostMapping("/lejeaftale")
+public String gemLejeaftale(@ModelAttribute LejeAftale lejeaftale)
+{
+    service.opretLejeaftale(lejeaftale.getKundeId(), lejeaftale.getBilId(), lejeaftale.getStartDato(), lejeaftale.getSlutDato());
+    return "redirect:/dataForside";
+}
+@PostMapping("/lejeaftale/opdater")
+public String opdaterLejeaftale(@ModelAttribute LejeAftale lejeaftale)
+{
+    service.opdaterLejeaftale(lejeaftale);
+    return "redirect:/lejeaftaler";
+}
+*/
+
+
+
+
+
+    /*
     @Autowired
     LejeAftaleRepo lejeAftaleRepo;
 
@@ -78,4 +153,4 @@ public class LejeAftaleController {
         lejeAftaleRepo.deleteById(id);
         return "redirect:/lejeAftaleListe";
     }
-}
+}*/
