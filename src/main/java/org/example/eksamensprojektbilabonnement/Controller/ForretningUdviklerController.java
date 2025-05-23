@@ -23,22 +23,12 @@ public class ForretningUdviklerController {
     @Autowired
     private LejeAftaleRepo lejeAftaleRepo;
 
-
-    @GetMapping("/foretUdviklForside")
-    public String foretUdviklForside()
-    {
-        return "foretUdviklForside";
-    }
-
-    
-    /*
     @GetMapping("/foretUdviklForside")
     public String foretUdviklForside(Model model) {
         model.addAttribute("antalBiler", bilService.getAntalBiler());
         model.addAttribute("samletPris", bilService.getSamletPris());
+        /*
         model.addAttribute("AntalLejetBiler", lejeAftaleService.getAntalLejetBiler());
+         */
         return "foretUdviklForside";
-    }
-
-     */
-}
+}}
