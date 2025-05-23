@@ -24,32 +24,32 @@ public class KundeController {
 
     @PostMapping("/kunde")
     public String opretKunde(@ModelAttribute Kunder kunde) {
-        kunderRepo.save(kunde);
+        kunderRepo.opretKunde(kunde);
         return "redirect:/kundeListe";
     }
 
     @GetMapping("/kundeListe")
     public String showKunderForm(Model model) {
-        model.addAttribute("kunder", kunderRepo.findAll());
+        model.addAttribute("kunder", kunderRepo.hentAlleKunder());
         return "kundeListe";
     }
 
     @GetMapping("/kunder/edit/{id}")
     public String showEditForm(@PathVariable long id, Model model) {
-        Kunder kunde = kunderRepo.findById(id).orElseThrow();
+        Kunder kunde = kunderRepo.hentKundeMedId(id).orElseThrow();
         model.addAttribute("kunde", kunde);
         return "redigerKunde";
     }
 
     @PostMapping("/kunder/update")
     public String updateKunde(@ModelAttribute Kunder kunde) {
-        kunderRepo.save(kunde);
+        kunderRepo.opdaterKunde(kunde);
         return "redirect:/kundeListe";
     }
 
     @GetMapping("/kunde/delete/{id}")
     public String deleteKunde(@PathVariable long id) {
-        kunderRepo.deleteById(id);
+        kunderRepo.sletKunde(id);
         return "redirect:/kundeListe";
     }
 }

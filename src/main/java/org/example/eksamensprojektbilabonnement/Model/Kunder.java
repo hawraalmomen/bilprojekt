@@ -1,24 +1,18 @@
 package org.example.eksamensprojektbilabonnement.Model;
 
-import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalDate;
 
-@Entity
-public class Kunder {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Kunder
+{
     private Long kundeId;
-
     private String fornavn;
     private String efternavn;
     private LocalDate fDag;
     private int postNr;
+    private String adresse;
     private String email;
     private String tlfNr;
-    private String adresse;
 
     public Kunder(Long kundeId, String fornavn, String efternavn, LocalDate fDag, int postNr, String email, String tlfNr, String adresse) {
         this.kundeId = kundeId;
@@ -43,7 +37,7 @@ public class Kunder {
         return kundeId;
     }
 
-    public LocalDate getfDag() {
+    public LocalDate getFDag() {
         return fDag;
     }
 
@@ -79,7 +73,7 @@ public class Kunder {
         this.email = email;
     }
 
-    public void setfDag(LocalDate fDag) {
+    public void setFDag(LocalDate fDag) {
         this.fDag = fDag;
     }
 

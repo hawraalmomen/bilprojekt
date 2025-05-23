@@ -2,16 +2,13 @@ package org.example.eksamensprojektbilabonnement.Model;
 
 import jakarta.persistence.*;
 
-@Entity
 public class Login {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private long loginId;
 
     private String brugernavn;
     private String password;
 
-    @ManyToOne
     private BrugerType brugerId;
 
     public Login() {}

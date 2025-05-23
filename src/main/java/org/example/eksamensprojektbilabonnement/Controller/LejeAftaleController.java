@@ -14,9 +14,116 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.*;
 
 @Controller
 public class LejeAftaleController {
+    @Autowired
+    private LejeAftaleService service;
+
+    @Autowired
+    private BilRepo bilRepo;
+
+    @Autowired
+    private KunderRepo kunderRepo;
+
+    @Autowired
+    private LejeAftaleRepo lejeAftaleRepo;
+
+    @GetMapping("/lejeAftale")
+    public String showLejeAftaleForm(Model model) {
+        model.addAttribute("lejeAftale", new LejeAftale());
+        model.addAttribute("kunder", kunderRepo.hentAlleKunder());
+        model.addAttribute("biler", bilRepo.hentAlleBiler());
+        return "lejeAftale";
+    }
+
+    @PostMapping("/lejeAftale")
+    public String opretAftale(@RequestParam Long kundeId,
+                              @RequestParam Long bilId,
+                              @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDato,
+                              @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate slutDato) {
+        Optional<Kunder> kunde = kunderRepo.hentKundeMedId(kundeId);
+        Optional<Bil> bil = bilRepo.hentBilMedId(bilId);
+
+        if (kunde.isEmpty() || bil.isEmpty()) {
+            return "redirect:/lejeAftale?error";
+        }
+
+        LejeAftale leje = new LejeAftale();
+        leje.setKundeId(kunde.get().getKundeId());
+        leje.setBilId(bil.get().getBilId());
+        leje.setStartDato(startDato);
+        leje.setSlutDato(slutDato);
+
+        lejeAftaleRepo.opretLejeaftale(leje); //Vores JDBC metode
+        return "redirect:/lejeAftaleListe";
+    }
+
+    @GetMapping("/lejeAftaleListe")
+    public String visAlle(Model model) {
+        List<LejeAftale> lejeaftaler = service.hentAlleLejeaftaler();
+
+        List<Map<String, Object>> enrichedLejeaftaler = new ArrayList<>();
+
+        for (LejeAftale l : lejeaftaler) {
+            Map<String, Object> row = new HashMap<>();
+            row.put("lejeaftale", l);
+            row.put("kunde", kunderRepo.hentKundeMedId(l.getKundeId()).orElse(null));
+            row.put("bil", bilRepo.hentBilMedId(l.getBilId()).orElse(null));
+            enrichedLejeaftaler.add(row);
+        }
+
+        model.addAttribute("lejeAftaler", enrichedLejeaftaler);
+        return "lejeAftaleListe";
+    }
+
+
+
+    @GetMapping("/lejeAftale/slet/{id}")
+    public String sletLejeaftale(@PathVariable Long id) {
+        service.sletLejeaftale(id);
+        return "redirect:/lejeAftaleListe";
+    }
+
+
+    @GetMapping("/lejeAftale/rediger/{id}")
+    public String redigerForm(@PathVariable Long id, Model model) {
+        LejeAftale aftale = service.hentLejeaftaleMedId(id);
+        model.addAttribute("lejeaftale", aftale);
+        model.addAttribute("kunder", kunderRepo.hentAlleKunder());
+        model.addAttribute("biler", bilRepo.hentAlleBiler());
+        return "redigerLejeAftale";
+    }
+
+    @PostMapping("/lejeAftale/update")
+    public String updateLejeAftale(@ModelAttribute LejeAftale lejeAftale) {
+        service.opdaterLejeaftale(lejeAftale);
+        return "redirect:/lejeAftaleListe";
+    }
+}
+
+
+/*
+@PostMapping("/lejeaftale")
+public String gemLejeaftale(@ModelAttribute LejeAftale lejeaftale)
+{
+    service.opretLejeaftale(lejeaftale.getKundeId(), lejeaftale.getBilId(), lejeaftale.getStartDato(), lejeaftale.getSlutDato());
+    return "redirect:/dataForside";
+}
+@PostMapping("/lejeaftale/opdater")
+public String opdaterLejeaftale(@ModelAttribute LejeAftale lejeaftale)
+{
+    service.opdaterLejeaftale(lejeaftale);
+    return "redirect:/lejeaftaler";
+}
+*/
+
+
+
+
+
+    /*
     @Autowired
     LejeAftaleRepo lejeAftaleRepo;
 
@@ -67,15 +174,11 @@ public class LejeAftaleController {
         return "redigerLejeAftale";
     }
 
-    @PostMapping("/lejeAftale/update")
-    public String updateLejeAftale(@ModelAttribute LejeAftale lejeAftale) {
-        lejeAftaleRepo.save(lejeAftale);
-        return "redirect:/lejeAftaleListe";
-    }
+
 
     @GetMapping("/lejeAftale/delete/{id}")
     public String deleteLejeAftale(@PathVariable long id) {
         lejeAftaleRepo.deleteById(id);
         return "redirect:/lejeAftaleListe";
     }
-}
+}*/

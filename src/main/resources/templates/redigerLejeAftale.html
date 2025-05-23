@@ -13,11 +13,11 @@
 
 <h1>Rediger Lejeaftale</h1>
 
-<form th:action="@{lejeAftale/update}" th:object="${lejeAftale}" method="post">
-  <input type="hidden" th:field="*{lejeId}" />
+<form th:action="@{/lejeAftale/update}" th:object="${lejeaftale}" method="post">
+  <input type="hidden" th:field="*{lejeaftaleId}" />
 
   <label for="kundeId">Kunde:</label>
-  <select name="*{kunde.kundeId}" id="kundeId">
+  <select th:field="*{kundeId}" id="kundeId">
     <option th:each="k : ${kunder}"
             th:value="${k.kundeId}"
             th:text="${k.fornavn + ' ' + k.efternavn + ' - ' + k.email}">
@@ -25,7 +25,7 @@
   </select><br><br>
 
   <label for="bilId">Bil:</label>
-  <select name="*{bil.bilId}" id="bilId">
+  <select th:field="*{bilId}" id="bilId">
     <option th:each="b : ${biler}"
             th:value="${b.bilId}"
             th:text="${b.brand + ' ' + b.model + ' ' + b.nummerPlade + ' - ' + b.bilStatus}">
@@ -33,13 +33,14 @@
   </select><br><br>
 
   <label>Startdato:</label>
-  <input type="date" name="*{startDato}" /><br><br>
+  <input type="date" th:field="*{startDato}" /><br><br>
 
   <label>Slutdato:</label>
-  <input type="date" name="*{slutDato}" /><br><br>
+  <input type="date" th:field="*{slutDato}" /><br><br>
 
   <button type="submit">Opdater Lejeaftale</button>
 </form>
+
 
 <a th:href="@{/lejeAftaleListe}">gå tilbage</a>
 

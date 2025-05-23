@@ -27,16 +27,14 @@ public class BilController {
 
     @PostMapping("/bil")
     public String opretBil(@ModelAttribute Bil bil) {
-        bilRepo.save(bil);
+        bilRepo.opretBil(bil);
         return "redirect:/bil";
     }
 
     @GetMapping("/bilListe")
     public String showBilListe(Model model) {
-        model.addAttribute("bilListe", bilRepo.findAll());
+        model.addAttribute("bilListe", bilRepo.hentAlleBiler());
         return "bilListe";
     }
-
-    
 
 }

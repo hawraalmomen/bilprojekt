@@ -23,15 +23,15 @@
         <th>Handling</th>
     </tr>
     <tr th:each="l : ${lejeAftaler}">
-        <td th:text="${l.lejeId}"></td>
+        <td th:text="${l.lejeaftale.lejeaftaleId}"></td>
         <td th:text="${l.kunde.fornavn + ' ' + l.kunde.efternavn}"></td>
         <td th:text="${l.kunde.email}"></td>
         <td th:text="${l.bil.brand + ' ' + l.bil.model + ' ' + l.bil.nummerPlade + ' - ' + l.bil.bilStatus}"></td>
-        <td th:text="${#temporals.format(l.startDato, 'dd-MM-yyyy')}"></td>
-        <td th:text="${#temporals.format(l.slutDato, 'dd-MM-yyyy')}"></td>
+        <td th:text="${#temporals.format(l.lejeaftale.startDato, 'dd-MM-yyyy')}"></td>
+        <td th:text="${#temporals.format(l.lejeaftale.slutDato, 'dd-MM-yyyy')}"></td>
         <td>
-            <a th:href="@{/lejeAftale/edit/{id}(id=${l.lejeId})}">Rediger</a> |
-            <a th:href="@{/lejeAftale/delete/{id}(id=${l.lejeId})}"onclick="return confirm('Er du sikker?')">Slet</a>
+            <a th:href="@{/lejeAftale/rediger/{id}(id=${l.lejeaftale.lejeaftaleId})}">Rediger</a> |
+            <a th:href="@{/lejeAftale/slet/{id}(id=${l.lejeaftale.lejeaftaleId})}" onclick="return confirm('Er du sikker?')">Slet</a>
         </td>
     </tr>
 </table>
