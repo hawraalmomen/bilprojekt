@@ -3,44 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret LejeAftale</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/Styler.css}">
 </head>
 <body>
 
-<ul class="logout" th:if="${session.loggedIn}">
-    <li><a th:href="@{/logout}">Log ud</a></li>
-</ul>
+    <ul class="logout" th:if="${session.loggedIn}">
+        <li><a th:href="@{/logout}">Log ud</a></li>
+    </ul>
 
-<h1>Opret lejeaftale</h1>
+    <div class = "container">
+    <h1>Opret lejeaftale</h1>
 
-<form th:action="@{lejeAftale}" th:object="${lejeAftale}" method="post">
+    <form th:action="@{lejeAftale}" th:object="${lejeAftale}" method="post">
 
-    <label for="kundeId">Kunde:</label>
-    <select name="kundeId" id="kundeId">
-        <option th:each="k : ${kunder}"
-                th:value="${k.kundeId}"
-                th:text="${k.fornavn + ' ' + k.efternavn + ' - ' + k.email}">
-        </option>
-    </select><br><br>
+        <label for="kundeId">Kunde:</label>
+        <select name="kundeId" id="kundeId">
+            <option th:each="k : ${kunder}"
+                    th:value="${k.kundeId}"
+                    th:text="${k.fornavn + ' ' + k.efternavn + ' - ' + k.email}">
+            </option>
+        </select><br><br>
 
-    <label for="BilId">Bil:</label>
-    <select name="bilId" id="bilId">
-        <option th:each="b : ${biler}"
-                th:value="${b.bilId}"
-                th:text="${b.brand + ' ' + b.model + ' ' + b.nummerPlade + ' - ' + b.bilStatus}">
-        </option>
-    </select><br><br>
+        <label for="BilId">Bil:</label>
+        <select name="bilId" id="bilId">
+            <option th:each="b : ${biler}"
+                    th:value="${b.bilId}"
+                    th:text="${b.brand + ' ' + b.model + ' ' + b.nummerPlade + ' - ' + b.bilStatus}">
+            </option>
+        </select><br><br>
 
-    <label>Startdato:</label>
-    <input type="date" name="startDato"><br><br>
+        <label>Startdato:</label>
+        <input type="date" name="startDato"><br><br>
 
-    <label>Slutdato:</label>
-    <input type="date" name="slutDato"><br><br>
+        <label>Slutdato:</label>
+        <input type="date" name="slutDato"><br><br>
 
-    <button type="submit">Opret Lejeaftale</button>
-</form>
+        <button type="submit">Opret Lejeaftale</button>
+    </form>
 
-<a th:href="@{/dataForside}">gå tilbage</a>
+        <br>
+
+    <a th:href="@{/dataForside}">Gå tilbage</a>
+    </div>
 
 </body>
 </html>
