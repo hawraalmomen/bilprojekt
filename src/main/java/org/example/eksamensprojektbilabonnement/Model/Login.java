@@ -1,22 +1,20 @@
 package org.example.eksamensprojektbilabonnement.Model;
 
-import jakarta.persistence.*;
-
 public class Login {
 
     private long loginId;
 
     private String brugernavn;
-    private String password;
+    private String kodeord;
 
     private BrugerType brugerId;
 
     public Login() {}
 
-    public Login(long loginId, String brugernavn, String password, BrugerType brugerId) {
+    public Login(long loginId, String brugernavn, String kodeord, BrugerType brugerId) {
         this.loginId = loginId;
         this.brugernavn = brugernavn;
-        this.password = password;
+        this.kodeord = kodeord;
         this.brugerId = brugerId;
     }
 
@@ -36,12 +34,12 @@ public class Login {
         this.brugernavn = brugernavn;
     }
 
-    public String getPassword() {
-        return password;
+    public String getKodeord() {
+        return kodeord;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setKodeord(String kodeord) {
+        this.kodeord = kodeord;
     }
 
     public BrugerType getBrugerId() {

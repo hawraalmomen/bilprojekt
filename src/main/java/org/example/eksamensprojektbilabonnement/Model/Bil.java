@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 
 public class Bil
 {
-
     private Long bilId;
     private String brand;
     private String model;

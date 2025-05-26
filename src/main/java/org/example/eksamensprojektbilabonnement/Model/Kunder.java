@@ -1,5 +1,7 @@
 package org.example.eksamensprojektbilabonnement.Model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 
@@ -8,6 +10,7 @@ public class Kunder
     private Long kundeId;
     private String fornavn;
     private String efternavn;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fDag;
     private int postNr;
     private String adresse;

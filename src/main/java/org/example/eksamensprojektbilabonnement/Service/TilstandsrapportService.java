@@ -6,6 +6,7 @@ import org.example.eksamensprojektbilabonnement.Model.TilstandsRapport;
 import org.example.eksamensprojektbilabonnement.Repository.TilstandsrapportRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.example.eksamensprojektbilabonnement.Repository.FejlRepo;
 
 import java.util.List;
 
@@ -48,6 +49,14 @@ public class TilstandsrapportService
     {
         tilstandsrapportRepo.sletTilstandsrapport(id);
     }
+
+    /*
+    // udregner priser på alle fejlende
+    public long samletPrisForSkaderne() {
+
+    }
+
+     */
 
 }
 

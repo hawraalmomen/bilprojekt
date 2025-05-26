@@ -1,5 +1,6 @@
 package org.example.eksamensprojektbilabonnement.Controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.eksamensprojektbilabonnement.Repository.BilRepo;
 import org.example.eksamensprojektbilabonnement.Repository.LejeAftaleRepo;
 import org.example.eksamensprojektbilabonnement.Service.BilService;
@@ -24,11 +25,33 @@ public class ForretningUdviklerController {
     private LejeAftaleRepo lejeAftaleRepo;
 
     @GetMapping("/foretUdviklForside")
-    public String foretUdviklForside(Model model) {
+    public String foretUdviklForside(Model model, HttpSession session) {
+        Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
+        if (loggedIn == null || !loggedIn) {
+            return "redirect:/login";
+        }
+
         model.addAttribute("antalBiler", bilService.getAntalBiler());
         model.addAttribute("samletPris", bilService.getSamletPris());
+        model.addAttribute("samletBilerLejetUd", lejeAftaleService.getAntalLejetBiler()); //
+
+        return "foretUdviklForside";
+    }
+
+
         /*
         model.addAttribute("AntalLejetBiler", lejeAftaleService.getAntalLejetBiler());
          */
-        return "foretUdviklForside";
-}}
+
+        /*
+        @GetMapping("/dataForside")
+        public String dataForside(HttpSession session) {
+            Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
+            if (loggedIn != null && loggedIn) {
+                return "dataForside";
+            } else {
+                return "redirect:/login";
+            }
+        }
+*/
+    }

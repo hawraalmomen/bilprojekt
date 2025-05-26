@@ -10,14 +10,18 @@ import java.util.Optional;
 public class LoginService {
     private final LoginRepo loginRepo;
 
+    // Constructor
     public LoginService(LoginRepo loginRepo) {
         this.loginRepo = loginRepo;
     }
 
     //
     public boolean login(String brugernavn, String password) {
+        //
         Optional<Login> login = loginRepo.findByBrugernavn(brugernavn);
 
+        //
         return login.isPresent() && login.get().getPassword().equals(password);
+
     }
 }

@@ -91,11 +91,10 @@ public class LejeAftaleService
         }
         return visningListe;
     }
-    /*
+
     public long getAntalLejetBiler(){
-        return lejeAftaleRepo.count();
+        return lejeAftaleRepo.hentAlleLejeaftaler().size();
     }
-     */
 }
 
 

@@ -14,18 +14,15 @@
 <div class="container">
     <h1 class="title">Opret tilstandsrapport</h1>
 
-<form action="@/{tilstandsrapport}" th:object="${rapport}" method="post">
+<form th:action="@{/tilstandsrapport}" th:object="${rapport}" method="post">
+    <label>LejeAftaleId</label>
+    <input type="number" th:field="*{lejeaftaleId}" />
 
-    <label for="datoTilsyn">Dato for tilsyn:</label>
-    <input type="date" th:field="*{dato}" id="datoTilsyn" required><br><br>
-
-    <label for="kundeId">Kunde:</label>
-    <select th:field="*{kundeId}" id="kundeId" required>
-        <option disabled selected>-- vælg kunde --</option>
-        <option th:each="k : ${kunder}"
-                th:value="${k.kundeId}"
-                th:text="${k.fornavn + ' ' + k.efternavn + ' - ' + k.email}">
-        </option>
+    <label>Vælg skader:</label>
+    <select th:field="*{fejlListe}" multiple size="5">
+        <option th:each="fejl : ${fejlValgmuligheder}"
+                th:value="${fejl.fejlId}"
+                th:text="${fejl.beskrivelse}">skade</option>
     </select><br><br>
 
     <button type="submit">Gem rapport</button>

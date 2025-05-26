@@ -2,7 +2,6 @@ package org.example.eksamensprojektbilabonnement.Repository;
 
 import org.example.eksamensprojektbilabonnement.Model.Login;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;

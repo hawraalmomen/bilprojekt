@@ -6,5 +6,25 @@
 </head>
 <body>
 
+<ul class="logout" th:if="${session.loggedIn}">
+    <li><a th:href="@{/logout}">Log ud</a></li>
+</ul>
+
+<h1>Bil Liste</h1>
+<table>
+    <tr>
+        <th>ID</th><th>Bil Navn</th><th>Nummer plade</th><th>Handling</th>
+    </tr>
+    <tr th:each="b : ${bil}">
+        <td th:text="${b.bilId}"></td>
+        <td th:text="${b.brand + ' ' + b.model}"></td>
+        <td th:text="${b.nummer}"></td>
+        <td>
+        <a th:href="@{/bil/edit/{id}(id=${b.bilId})}">Rediger</a> |
+        <a th:href="@{/bil/delete/{id}(id=${b.bilId})}"onclick="return confirm('Er du sikker?')">Slet</a>
+        </td>
+    </tr>
+</table>
+
 </body>
 </html>

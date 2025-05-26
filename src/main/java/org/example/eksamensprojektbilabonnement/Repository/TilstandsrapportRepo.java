@@ -35,7 +35,7 @@ public class TilstandsrapportRepo
     // opret tilstandsrapport
     public void opretTilstandsrapport(TilstandsRapport tilstandsrapport)
     {
-        String sql = "insert into tilstandsrapport(lejeaftale_id, dato) values (?,?,?,?)";
+        String sql = "insert into tilstandsrapport(lejeaftale_id, dato) values (?,?)";
         jdbcTemplate.update(sql,
                 tilstandsrapport.getLejeaftaleId(),
                 tilstandsrapport.getDato()

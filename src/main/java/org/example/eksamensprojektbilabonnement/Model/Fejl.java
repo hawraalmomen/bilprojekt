@@ -51,6 +51,21 @@ public class Fejl
         this.pris = pris;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Fejl fejl = (Fejl) o;
+        return fejlId != null && fejlId.equals(fejl.fejlId);
+    }
+
+    @Override
+    public int hashCode() {
+        return fejlId != null ? fejlId.hashCode() : 0;
+    }
+
+
 }
 
 

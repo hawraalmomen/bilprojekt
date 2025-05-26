@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Repository
@@ -63,5 +64,18 @@ public class FejlRepo
     {
         String sql = "delete from fejl where fejl_id = ?";
         jdbcTemplate.update(sql, id);
+    }
+
+    // opdater tilstandsrapport
+    public void opdaterTilstandsrapportId(Long fejlId, Long tilstandsrapportId) {
+        String sql = "UPDATE fejl SET tilstandsrapport = ? WHERE fejl_id = ?";
+        jdbcTemplate.update(sql, tilstandsrapportId, fejlId);
+    }
+
+    // henter fejl med id liste
+    public List<Fejl> hentFejlMedIdListe(List<Long> ids) {
+        String placeholders = ids.stream().map(id -> "?").collect(Collectors.joining(","));
+        String sql = "SELECT * FROM fejl WHERE id IN (" + placeholders + ")";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Fejl.class), ids.toArray());
     }
 }
