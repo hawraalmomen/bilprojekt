@@ -36,7 +36,7 @@ public class LoginRepo {
             Login login = new Login();
             login.setLoginId(rs.getLong("login_id"));
             login.setBrugernavn(rs.getString("brugernavn"));
-            login.setPassword(rs.getString("password"));
+            login.setKodeord(rs.getString("kodeord"));
 
             return login;
         }

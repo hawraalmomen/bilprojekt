@@ -21,7 +21,7 @@ public class LoginService {
         Optional<Login> login = loginRepo.findByBrugernavn(brugernavn);
 
         //
-        return login.isPresent() && login.get().getPassword().equals(password);
+        return login.isPresent() && login.get().getKodeord().equals(password);
 
     }
 }

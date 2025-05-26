@@ -3,42 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>kunde</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/Styler.css}">
 </head>
 <body>
 
-<ul class="logout" th:if="${session.loggedIn}">
-    <li><a th:href="@{/logout}">Log ud</a></li>
-</ul>
+    <ul class="logout" th:if="${session.loggedIn}">
+        <li><a th:href="@{/logout}">Log ud</a></li>
+    </ul>
 
-<h1>Opret ny kunde</h1>
+    <div class="container">
+    <h1 class="title">Opret ny kunde</h1>
 
-<form th:action="@{/kunde}" th:object="${kunde}" method="post">
-    <label>Fornavn:</label>
-    <input type="text" th:field="*{fornavn}" /><br><br>
+        <!-- Kunde oprettelsesformularen -->
+        <form th:action="@{/kunde}" th:object="${kunde}" method="post" class="kundeform">
 
-    <label>Efternavn:</label>
-    <input type="text" th:field="*{efternavn}" /><br><br>
+            <label for="fornavn">Fornavn:</label>
+            <input type="text" th:field="*{fornavn}" id="fornavn" required />
 
-    <label>Foedelsedag</label>
-    <input type="date" th:field="*{fDag}" /><br><br>
+            <label for="efternavn">Efternavn:</label>
+            <input type="text" th:field="*{efternavn}" id="efternavn" required />
 
-    <label>Email:</label>
-    <input type="email" th:field="*{email}" /><br><br>
+            <label for="fDag">Fødselsdag:</label>
+            <input type="date" th:field="*{fDag}" id="fDag" required />
 
-    <label>Telefonnummer:</label>
-    <input type="text" th:field="*{tlfNr}" /><br><br>
+            <label for="email">Email:</label>
+            <input type="email" th:field="*{email}" id="email" required />
 
-    <label>Adresse:</label>
-    <input type="text" th:field="*{adresse}" /><br><br>
+            <label for="tlfNr">Telefonnummer:</label>
+            <input type="text" th:field="*{tlfNr}" id="tlfNr" required />
 
-    <label>Postnummer:</label>
-    <input type="text" th:field="*{postNr}" /><br><br>
+            <label for="adresse">Adresse:</label>
+            <input type="text" th:field="*{adresse}" id="adresse" required />
 
-    <button type="submit">Gem kunde</button>
-</form>
+            <label for="postNr">Postnummer:</label>
+            <input type="text" th:field="*{postNr}" id="postNr" required />
 
-<a th:href="@{/dataForside}">tilbage til forsiden</a>
+            <button type="submit">Gem kunde</button>
+        </form>
+
+        <!-- Tilbage link -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a th:href="@{/kundeListe}">Tilbage til kundelisten</a>
+        </div>
+
+    </div>
 
 </body>
 </html>

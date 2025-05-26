@@ -31,7 +31,7 @@ public class LoginServiceTest {
         String password = "main123";
         Login mockLogin = new Login();
         mockLogin.setBrugernavn(username);
-        mockLogin.setPassword(password);
+        mockLogin.setKodeord(password);
 
         when(loginRepo.findByBrugernavn(username)).thenReturn(Optional.of(mockLogin));
 
