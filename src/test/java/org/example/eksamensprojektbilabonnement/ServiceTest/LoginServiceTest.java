@@ -28,15 +28,15 @@ public class LoginServiceTest {
     public void testLoginSuccess() {
         // Arrange
         String username = "main";
-        String password = "main123";
+        String kodeord = "main123";
         Login mockLogin = new Login();
         mockLogin.setBrugernavn(username);
-        mockLogin.setPassword(password);
+        mockLogin.setKodeord(kodeord);
 
         when(loginRepo.findByBrugernavn(username)).thenReturn(Optional.of(mockLogin));
 
         // Act
-        boolean result = loginService.login(username, password);
+        boolean result = loginService.login(username, kodeord);
 
         // Assert
         assertTrue(result);
@@ -48,15 +48,15 @@ public class LoginServiceTest {
     public void testLoginWrongPassword() {
         // Arrange
         String username = "main";
-        String inputPassword = "wrong";
+        String inputKodeord = "wrong";
         Login mockLogin = new Login();
         mockLogin.setBrugernavn(username);
-        mockLogin.setPassword("main123");
+        mockLogin.setKodeord("main123");
 
         when(loginRepo.findByBrugernavn(username)).thenReturn(Optional.of(mockLogin));
 
         // act
-        boolean result = loginService.login(username, inputPassword);
+        boolean result = loginService.login(username, inputKodeord);
 
         // Assert
         assertFalse(result);

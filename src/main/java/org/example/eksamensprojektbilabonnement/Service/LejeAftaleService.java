@@ -9,6 +9,7 @@ import org.example.eksamensprojektbilabonnement.Repository.LejeAftaleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,11 +27,24 @@ public class LejeAftaleService
     @Autowired
     private BilRepo bilRepo;
 
+    public LejeAftaleService(LejeAftaleRepo lejeAftaleRepo, KunderRepo kunderRepo, BilRepo bilRepo) {
+        this.lejeAftaleRepo = lejeAftaleRepo;
+        this.kunderRepo = kunderRepo;
+        this.bilRepo = bilRepo;
+    }
+
     // opret lejeaftaler
-    public void opretLejeaftale(Long kundeId, Long bilId, LocalDate startDato, LocalDate slutDato)
-    {
-        LejeAftale aftale = new LejeAftale(null, kundeId, bilId, startDato, slutDato);
-        lejeAftaleRepo.opretLejeaftale(aftale);
+    public void opretLejeaftale(LejeAftale lejeAftale) {
+        Bil bil = bilRepo.hentBilMedId(lejeAftale.getBilId()).orElseThrow(() ->
+                new RuntimeException("Bilen blev ikke fundet"));
+
+        if ("Udlejet".equalsIgnoreCase(bil.getBilStatus())) {
+            throw new RuntimeException("Bilen er allerede Udlejet");
+        }
+
+        lejeAftaleRepo.opretLejeaftale(lejeAftale);
+        bil.setBilStatus("Udlejet");
+        bilRepo.opdaterBil(bil);
     }
 
     public Map<Long, LejeAftale> hentLejeaftaler()
@@ -50,12 +64,6 @@ public class LejeAftaleService
     public List<LejeAftale> hentAlleLejeaftaler()
     {
         return lejeAftaleRepo.hentAlleLejeaftaler();
-    }
-
-    // slet lejeaftale
-    public void sletLejeaftale(Long id)
-    {
-        lejeAftaleRepo.sletLejeaftale(id);
     }
 
     // hent lejeaftale til redigering
@@ -94,6 +102,23 @@ public class LejeAftaleService
 
     public long getAntalLejetBiler(){
         return lejeAftaleRepo.hentAlleLejeaftaler().size();
+    }
+
+    public void sletLejeAftale(long lejeAftaleId) {
+        LejeAftale lejeAftale = lejeAftaleRepo.hentLejeaftaleMedId(lejeAftaleId);
+        Bil bil = bilRepo.hentBilMedId(lejeAftale.getBilId()).orElseThrow(() ->
+                        new RuntimeException("Bilen blev ikke fundet"));
+
+        lejeAftaleRepo.sletLejeaftale(lejeAftaleId);
+
+        bil.setBilStatus("Klar");
+        bilRepo.opdaterBil(bil);
+    }
+
+    public BigDecimal getSamletPrisForUdlejetBiler() {
+        return bilRepo.hentAlleBiler().stream().filter(bil -> "Udlejet".equalsIgnoreCase(bil.getBilStatus()))
+                .map(Bil::getPris)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
 

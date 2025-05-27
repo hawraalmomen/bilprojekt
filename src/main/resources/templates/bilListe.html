@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Bil Liste</title>
+    <link rel="stylesheet" th:href="@{/Styler.css}">
 </head>
 <body>
 
@@ -10,15 +11,16 @@
     <li><a th:href="@{/logout}">Log ud</a></li>
 </ul>
 
+<div class="container">
 <h1>Bil Liste</h1>
-<table>
-    <tr>
+<table class="customer-table">
+    <tr class="table-header">
         <th>ID</th><th>Bil Navn</th><th>Nummer plade</th><th>Handling</th>
     </tr>
-    <tr th:each="b : ${bil}">
+    <tr th:each="b : ${bilListe}">
         <td th:text="${b.bilId}"></td>
         <td th:text="${b.brand + ' ' + b.model}"></td>
-        <td th:text="${b.nummer}"></td>
+        <td th:text="${b.nummerPlade}"></td>
         <td>
         <a th:href="@{/bil/edit/{id}(id=${b.bilId})}">Rediger</a> |
         <a th:href="@{/bil/delete/{id}(id=${b.bilId})}"onclick="return confirm('Er du sikker?')">Slet</a>
@@ -26,5 +28,9 @@
     </tr>
 </table>
 
+<a href="/bil" class="function-box">Opret ny Bil</a>
+
+<a href="/dataForside" class="function-box">Tilbage til forside</a>
+</div>
 </body>
 </html>

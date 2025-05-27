@@ -2,24 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Forretningsudvikler Oversigt</title>
+    <title>Forretningsudvikler - Forside</title>
     <link rel ="stylesheet" th:href="@{/Styler.css}">
 </head>
-<body>
 
+<body>
+<!-- Log ud knappen -->
 <ul class="logout" th:if="${session.loggedIn}">
     <li><a th:href="@{/logout}">Log ud</a></li>
 </ul>
 
+
 <div class = "container">
-    <h1>Forretningsudvikler Dashboard</h1>
+    <h1 class="title">Velkommen</h1><br>
 
-    <p>Antal biler i systemet: <strong th:text="${antalBiler}">0</strong></p>
-    <p>Samlet pris af alle biler: <strong th:text="${samletPris}">0</strong></p>
-    <p>Antal af biler som er lejet ud: <strong th:text="${samletBilerLejetUd}">0</strong></p>
+    <!-- Statistik boksene -->
+    <div class="forretningsudvikler-boxes">
+        <div class="forretningsudvikler-box">
+            <img src="/images/cars1.png">
+            <h2>Antal biler i systemet:</h2>
+            <p th:text="${antalBiler}">0</p>
+        </div><br>
 
-    <a th:href="@{/}">Tilbage til forsiden</a>
+        <div class="forretningsudvikler-box">
+            <img src="/images/cars3.png">
+            <h2>Total pris på biler:</h2>
+            <p th:text="${samletPris} + ' kr.'">0</p>
+        </div><br>
 
+        <div class="forretningsudvikler-box">
+            <img src="/images/cars2.png">
+            <h2>Antal udlejede biler:</h2>
+            <p th:text="${samletBilerLejetUd}">0</p>
+        </div>
+
+        <div class="forretningsudvikler-box">
+            <img src="/images/biler-image2.jpg">
+            <h2>Antal biler i systemet:</h2>
+            <p th:text="${samletPrisForUdlejetBiler} + ' kr.'">0</p>
+        </div><br>
+
+    </div>
 </div>
+
 </body>
 </html>

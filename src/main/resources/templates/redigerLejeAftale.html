@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>redigerLejeAftale</title>
-  <link rel="stylesheet" th:href="@{/style.css}">
+  <link rel="stylesheet" th:href="@{/Styler.css}">
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 
   <label for="bilId">Bil:</label>
   <select th:field="*{bilId}" id="bilId">
-    <option th:each="b : ${biler}"
+    <option th:each="b : ${ledigeBiler}"
             th:value="${b.bilId}"
             th:text="${b.brand + ' ' + b.model + ' ' + b.nummerPlade + ' - ' + b.bilStatus}">
     </option>

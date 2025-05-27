@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>kunde</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/Styler.css}">
 </head>
 <body>
 
@@ -11,9 +11,10 @@
     <li><a th:href="@{/logout}">Log ud</a></li>
 </ul>
 
+<div class="container">
 <h1>Opret ny kunde</h1>
 
-<form th:action="@{/kunde}" th:object="${kunde}" method="post">
+<form th:action="@{/kunde}" th:object="${kunde}" method="post" class="kundeform">
     <label>Fornavn:</label>
     <input type="text" th:field="*{fornavn}" /><br><br>
 
@@ -37,8 +38,9 @@
 
     <button type="submit">Gem kunde</button>
 </form>
-
+<div style="text-align: center; margin-top: 20px">
 <a th:href="@{/dataForside}">tilbage til forsiden</a>
-
+</div>
+</div>
 </body>
 </html>

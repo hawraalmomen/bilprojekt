@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>kundeOversigt</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/Styler.css}">
 </head>
 <body>
 
@@ -11,9 +11,10 @@
     <li><a th:href="@{/logout}">Log ud</a></li>
 </ul>
 
+<div class="container">
 <h1>Liste over kunder</h1>
-<table>
-    <tr>
+<table class="customer-table">
+    <tr class="table-header">
         <th>ID</th><th>Navn</th><th>Email</th><th>Handling</th>
     </tr>
     <tr th:each="k : ${kunder}">
@@ -30,6 +31,6 @@
 <a href="/kunde" class="function-box">Opret ny bruger</a>
 
 <a href="/" class="function-box">Tilbage til forsiden</a>
-
+</div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>lejeAftaleListe</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/Styler.css}">
 </head>
 <body>
 
@@ -11,13 +11,16 @@
     <li><a th:href="@{/logout}">Log ud</a></li>
 </ul>
 
+<div class="container">
 <h1>Liste over Lejeaftaler</h1>
-<table>
-    <tr>
+
+<table class="customer-table">
+    <tr class="table-header">
         <th>ID</th>
         <th>Navn</th>
         <th>Email</th>
         <th>Bil</th>
+        <th>Status</th>
         <th>StartDato</th>
         <th>SlutDato</th>
         <th>Handling</th>
@@ -26,7 +29,8 @@
         <td th:text="${l.lejeaftale.lejeaftaleId}"></td>
         <td th:text="${l.kunde.fornavn + ' ' + l.kunde.efternavn}"></td>
         <td th:text="${l.kunde.email}"></td>
-        <td th:text="${l.bil.brand + ' ' + l.bil.model + ' ' + l.bil.nummerPlade + ' - ' + l.bil.bilStatus}"></td>
+        <td th:text="${l.bil.brand + ' ' + l.bil.model + ' ' + l.bil.nummerPlade}"></td>
+        <td th:text="${l.bil.bilStatus}"></td>
         <td th:text="${#temporals.format(l.lejeaftale.startDato, 'dd-MM-yyyy')}"></td>
         <td th:text="${#temporals.format(l.lejeaftale.slutDato, 'dd-MM-yyyy')}"></td>
         <td>
@@ -38,7 +42,7 @@
 
 <a href="/lejeAftale" class="function-box">Opret ny lejeAftale</a>
 
-<a href="/" class="function-box">Tilbage til forsiden</a>
-
+<a href="/dataForside" class="function-box">Tilbage til forside</a>
+</div>
 </body>
 </html>

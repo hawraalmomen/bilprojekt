@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -42,7 +43,7 @@ public class LejeAftaleController {
     public String opretAftale(@RequestParam Long kundeId,
                               @RequestParam Long bilId,
                               @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDato,
-                              @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate slutDato) {
+                              @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate slutDato, RedirectAttributes redirectAttributes) {
         Optional<Kunder> kunde = kunderRepo.hentKundeMedId(kundeId);
         Optional<Bil> bil = bilRepo.hentBilMedId(bilId);
 
@@ -50,13 +51,19 @@ public class LejeAftaleController {
             return "redirect:/lejeAftale?error";
         }
 
-        LejeAftale leje = new LejeAftale();
-        leje.setKundeId(kunde.get().getKundeId());
-        leje.setBilId(bil.get().getBilId());
-        leje.setStartDato(startDato);
-        leje.setSlutDato(slutDato);
+        try {
+            LejeAftale leje = new LejeAftale();
+            leje.setKundeId(kunde.get().getKundeId());
+            leje.setBilId(bil.get().getBilId());
+            leje.setStartDato(startDato);
+            leje.setSlutDato(slutDato);
 
-        lejeAftaleRepo.opretLejeaftale(leje); //Vores JDBC metode
+            service.opretLejeaftale(leje);
+        } catch (RuntimeException ex) {
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
+            return "redirect:/lejeAftale?error";
+        }
+
         return "redirect:/lejeAftaleListe";
     }
 
@@ -82,7 +89,7 @@ public class LejeAftaleController {
 
     @GetMapping("/lejeAftale/slet/{id}")
     public String sletLejeaftale(@PathVariable Long id) {
-        service.sletLejeaftale(id);
+        service.sletLejeAftale(id);
         return "redirect:/lejeAftaleListe";
     }
 
@@ -92,7 +99,7 @@ public class LejeAftaleController {
         LejeAftale aftale = service.hentLejeaftaleMedId(id);
         model.addAttribute("lejeaftale", aftale);
         model.addAttribute("kunder", kunderRepo.hentAlleKunder());
-        model.addAttribute("biler", bilRepo.hentAlleBiler());
+        model.addAttribute("ledigeBiler", bilRepo.findBilerDerRedigeres(aftale.getBilId()));
         return "redigerLejeAftale";
     }
 

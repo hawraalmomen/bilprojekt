@@ -2,47 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Data registrator - Forside</title>
+  <title>Forside - Data registrator</title>
   <link rel ="stylesheet" th:href="@{/Styler.css}">
 </head>
 
 <body>
 
-  <!-- Log ud -->
-  <ul class="logout" th:if="${session.loggedIn}">
-    <li><a th:href="@{/logout}">Log ud</a></li>
-  </ul>
+<!-- Log ud -->
+<ul class="logout" th:if="${session.loggedIn}">
+  <li><a th:href="@{/logout}">Log ud</a></li>
+</ul>
 
 
-  <div class = "container">
-    <!-- Overskrift / titel -->
-    <h1 class = "title">Velkommen</h1>
+<div class = "container">
+  <!-- Overskrift / titel -->
+  <h1 class = "title">Velkommen</h1>
 
 
-    <div class="function-boxes">
-      <!-- Oprettelse af ny lejeaftale boksen -->
-      <a href = "/lejeAftaleListe" class = "function-box">
-        <img src="/images/cars1.png">
-        <p>Opret ny lejeaftale</p>
-      </a>
-    </div>
-
-    <div class="function-boxes">
-      <!-- Oprettelse af ny lejeaftale boksen -->
-      <a href = "/kundeListe" class = "function-box">
-        <img src="/images/people.png">
-        <p>Opret ny kunder</p>
-      </a>
-    </div>
-
-    <div class="function-boxes">
-      <!-- Oprettelse af ny lejeaftale boksen -->
-      <a href = "/bilListe" class = "function-box">
-        <img src="/images/cars1.png">
-        <p>Opret ny en Bil</p>
-      </a>
-    </div>
-
+  <div class="function-boxes">
+    <!-- Oprettelse af ny lejeaftale boksen -->
+    <a href = "/lejeAftaleListe" class = "function-box">
+      <img src="/images/car3.png">
+      <p>Opret ny lejeaftale</p>
+    </a>
   </div>
+
+  <br>
+
+  <div class="function-boxes">
+    <!-- Oprettelse af ny lejeaftale boksen -->
+    <a href = "/kundeListe" class = "function-box">
+      <img src="/images/people.png">
+      <p>Opret ny kunder</p>
+    </a>
+  </div>
+
+  <br>
+
+  <div class="function-boxes">
+    <!-- Oprettelse af ny lejeaftale boksen -->
+    <a href = "/bilListe" class = "function-box">
+      <img src="/images/car2.png">
+      <p>Opret ny en Bil</p>
+    </a>
+  </div>
+
+</div>
 </body>
 </html>
