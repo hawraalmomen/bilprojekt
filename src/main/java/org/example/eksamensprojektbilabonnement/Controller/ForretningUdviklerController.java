@@ -39,20 +39,4 @@ public class ForretningUdviklerController {
         return "foretUdviklForside";
     }
 
-
-        /*
-        model.addAttribute("AntalLejetBiler", lejeAftaleService.getAntalLejetBiler());
-         */
-
-        /*
-        @GetMapping("/dataForside")
-        public String dataForside(HttpSession session) {
-            Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
-            if (loggedIn != null && loggedIn) {
-                return "dataForside";
-            } else {
-                return "redirect:/login";
-            }
-        }
-*/
-    }
+}
