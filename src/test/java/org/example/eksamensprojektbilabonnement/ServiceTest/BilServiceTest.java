@@ -1,4 +1,4 @@
-*/
+/*
 package org.example.eksamensprojektbilabonnement.ServiceTest;
 
 import org.example.eksamensprojektbilabonnement.Repository.BilRepo;
@@ -17,4 +17,4 @@ public class BilServiceTest {
         bilService = new BilService(bilRepo);
     }
 }
-/*
+*/
